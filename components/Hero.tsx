@@ -90,22 +90,6 @@ const Hero: React.FC<HeroProps> = ({ setSection }) => {
     },
   };
 
-  const glowVariants = {
-    initial: { textShadow: '0 0 10px rgba(0,243,255,0.5)' },
-    animate: {
-      textShadow: [
-        '0 0 10px rgba(0,243,255,0.5)',
-        '0 0 30px rgba(0,243,255,0.8)',
-        '0 0 10px rgba(0,243,255,0.5)',
-      ],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      },
-    },
-  };
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
       {/* Animated Background Grid Effect */}
@@ -162,18 +146,15 @@ const Hero: React.FC<HeroProps> = ({ setSection }) => {
         <motion.h1
           className="text-5xl md:text-7xl font-bold font-tech uppercase tracking-widest text-white"
           variants={itemVariants}
-          initial="initial"
-          animate="animate"
           style={{ textShadow: '0 0 10px rgba(0,243,255,0.5)' }}
           whileHover={{ scale: 1.02 }}
         >
-          <motion.span
-            variants={glowVariants}
-            initial="initial"
-            animate="animate"
+          <span
+            className="glitch"
+            data-text={BIO.name}
           >
             {BIO.name}
-          </motion.span>
+          </span>
         </motion.h1>
 
         <motion.div

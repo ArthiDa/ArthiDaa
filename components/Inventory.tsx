@@ -1,7 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS, PAPERS } from '../constants';
 import { FolderGit2, FileText, ExternalLink, Star } from 'lucide-react';
+
+// 3D Tilt Card Component
+const TiltCard: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+  glowColor?: string;
+}> = ({ children, className = '', glowColor = 'rgba(0,243,255,0.3)' }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+
+    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    cardRef.current.style.boxShadow = `0 0 30px ${glowColor}`;
+  };
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    cardRef.current.style.boxShadow = 'none';
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      className={`transition-all duration-300 ease-out ${className}`}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      {children}
+    </div>
+  );
+};
 
 const Inventory: React.FC = () => {
   const [tab, setTab] = useState<'projects' | 'papers'>('projects');
@@ -106,14 +147,12 @@ const Inventory: React.FC = () => {
             PROJECTS.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="group relative bg-card-bg border border-gray-800 p-6 rounded-xl hover:border-neon-blue transition-colors duration-300"
                 variants={cardVariants}
-                whileHover={{
-                  y: -8,
-                  boxShadow: '0 0 30px rgba(0,243,255,0.3)',
-                }}
-                transition={{ duration: 0.3 }}
               >
+                <TiltCard
+                  className="group relative bg-card-bg border border-gray-800 p-6 rounded-xl hover:border-neon-blue h-full"
+                  glowColor="rgba(0,243,255,0.3)"
+                >
                 <motion.div
                   className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity"
                   animate={{ rotate: [0, 10, -10, 0] }}
@@ -166,6 +205,7 @@ const Inventory: React.FC = () => {
                     Source <ExternalLink size={12} className="ml-2" />
                   </motion.a>
                 )}
+                </TiltCard>
               </motion.div>
             ))
           ) : (
