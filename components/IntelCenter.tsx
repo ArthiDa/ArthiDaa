@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { generateWithSearch } from '../services/geminiService';
-import { Search, Database, Globe, Terminal, Key, Lock, ChevronDown, Cpu } from 'lucide-react';
+import { Search, Database, Globe, Terminal, Key, Lock, ChevronDown } from 'lucide-react';
 
 const IntelCenter: React.FC = () => {
   const [apiKey, setApiKey] = useState('');
@@ -17,11 +17,6 @@ const IntelCenter: React.FC = () => {
     if (apiKey.trim().length > 10) {
       setIsUnlocked(true);
     }
-  };
-
-  const handleSystemUnlock = () => {
-    setApiKey(''); // Clear manual key to force system key usage
-    setIsUnlocked(true);
   };
 
   const handleSearch = async (e: React.FormEvent) => {
@@ -85,18 +80,6 @@ const IntelCenter: React.FC = () => {
               Authenticate
             </button>
 
-            <div className="relative flex items-center justify-center py-2">
-               <div className="h-px bg-gray-700 w-full"></div>
-               <span className="absolute bg-card-bg px-2 text-xs text-gray-500 font-mono">OR</span>
-            </div>
-
-            <button 
-              type="button"
-              onClick={handleSystemUnlock}
-              className="w-full bg-gray-800 border border-gray-600 text-gray-300 py-2 rounded font-gaming hover:bg-gray-700 hover:text-white transition-colors text-xs flex items-center justify-center gap-2"
-            >
-              <Cpu size={14} /> Auto-Detect Key
-            </button>
           </form>
 
           <div className="mt-6 text-center">

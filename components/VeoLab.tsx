@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { generateVeoVideo } from '../services/geminiService';
-import { Clapperboard, Upload, Play, AlertCircle, Film, Lock, Key, ChevronDown, Cpu } from 'lucide-react';
+import { Clapperboard, Upload, Play, AlertCircle, Film, Lock, Key, ChevronDown } from 'lucide-react';
 
 const VeoLab: React.FC = () => {
   const [apiKey, setApiKey] = useState('');
@@ -22,11 +22,6 @@ const VeoLab: React.FC = () => {
     if (apiKey.trim().length > 10) {
       setIsUnlocked(true);
     }
-  };
-
-  const handleSystemUnlock = () => {
-    setApiKey(''); // Clear manual key to force system key usage
-    setIsUnlocked(true);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,19 +97,6 @@ const VeoLab: React.FC = () => {
                 className="w-full bg-neon-purple/20 border border-neon-purple text-neon-purple py-2 rounded font-gaming hover:bg-neon-purple hover:text-black transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Access Lab
-              </button>
-              
-              <div className="relative flex items-center justify-center py-2">
-                 <div className="h-px bg-gray-700 w-full"></div>
-                 <span className="absolute bg-card-bg px-2 text-xs text-gray-500 font-mono">OR</span>
-              </div>
-
-              <button 
-                type="button"
-                onClick={handleSystemUnlock}
-                className="w-full bg-gray-800 border border-gray-600 text-gray-300 py-2 rounded font-gaming hover:bg-gray-700 hover:text-white transition-colors text-xs flex items-center justify-center gap-2"
-              >
-                <Cpu size={14} /> Auto-Detect Key
               </button>
             </form>
   

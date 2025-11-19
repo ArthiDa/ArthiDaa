@@ -21,7 +21,7 @@ export const JOURNEY: JourneyMilestone[] = [
   {
     id: 'j2',
     title: 'Level Up: Pupil',
-    role: 'Codeforces Pupil (1400)',
+    role: 'Codeforces Pupil (1200)',
     period: 'University (Year 3)',
     description: 'Achieved Pupil rank on Codeforces. Learned DP, Bit-masking, Binary Trees. Built Fullstack Ecommerce site with PHP.',
     tech: ['PHP', 'Bootstrap', 'MySQL', 'Algorithms'],
@@ -38,12 +38,12 @@ export const JOURNEY: JourneyMilestone[] = [
   },
   {
     id: 'j4',
-    title: 'Innovation & Mentorship',
-    role: 'Project Lead',
+    title: 'Final CP Push',
+    role: 'Codeforces Specialist (1400)',
     period: 'University (Year 4, Sem 8)',
-    description: 'Built QueryHub (RAG Knowledge Platform) under industry mentorship. Secured Microsoft Startup credits.',
-    tech: ['FastAPI', 'RAG', 'Vector DB', 'Modal.com'],
-    icon: 'work'
+    description: 'Closed out competitive programming journey by hitting 1400 (Specialist) while leading QueryHub (RAG Knowledge Platform) under industry mentorship and securing Microsoft Startup credits.',
+    tech: ['FastAPI', 'RAG', 'Vector DB', 'Modal.com', 'Advanced CP'],
+    icon: 'trophy'
   },
   {
     id: 'j5',
