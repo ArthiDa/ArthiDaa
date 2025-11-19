@@ -1,0 +1,7 @@
+{
+  "name": "Pranab's Gamified Portfolio",
+  "description": "A gamified interactive portfolio for Pranab Barua Arthi, featuring AI-powered search and video generation capabilities.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
